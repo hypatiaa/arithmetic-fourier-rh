@@ -13,9 +13,9 @@ Independent restatements of the headline results, written only in Mathlib's own 
 * Every `theorem` is stated with these definitions and Mathlib's `_root_.RiemannHypothesis` and
   `riemannZeta`, and is proved by appeal to the repository's theorems.
 
-If a repository definition did not mean what its name says, or if a Mathlib name had been
-shadowed, this file would not compile. The kernel replays check the proofs; this file checks
-the statements.
+Each pin states a headline result independently in Mathlib terms, and Lean checks that the
+development proves that statement. The kernel replays check the proofs; the pins check that
+what is proved is the statement written here.
 -/
 
 open Filter MeasureTheory
