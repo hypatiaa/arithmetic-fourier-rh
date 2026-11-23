@@ -54,12 +54,12 @@ This build checks that the sources compile. The kernel replays above check the p
 
 ## The PDF
 
-`paper/paper.pdf` (full edition v0.3.3.1) was built on 2026-11-23 from `paper/paper.tex` (sha256 `69cd4a2b…9488bb5e`) with Tectonic 0.17.0, the official x86_64 Linux release, whose archive sha256 was checked against the release's published digest.
+`paper/paper.pdf` (full edition v0.3.3.2) was built on 2026-11-23 from `paper/paper.tex` (sha256 `4e35827c…f6e7dde1`) with Tectonic 0.17.0, the official x86_64 Linux release, whose archive sha256 was checked against the release's published digest.
 - **Result:** exit code 0; 15 pages; 0 overfull and 0 underfull boxes; no undefined references.
 - **TeX log:** [`tectonic_paper.log`](tectonic_paper.log), sha256 `8d5dd331…4cf24518`.
-- **PDF:** sha256 `f3d43e7318523b7f5d0fe95e482ce3ac2a52631de11906329272932698286490`.
+- **PDF:** sha256 `e7e6d3bdd6ca3b428232047b4743acac856da1561080870bdb5c462c5c3579da`.
 
-`paper/simple/simple.pdf` (simplified edition v0.1.3) was built the same way: 4 pages, 0 overfull and 0 underfull boxes.
+`paper/simple/simple.pdf` (simplified edition v0.1.4) was built the same way: 4 pages, 0 overfull and 0 underfull boxes.
 
 ## Independent checks
 

@@ -1,6 +1,6 @@
 # The mean square of a prime-phase polynomial and the Riemann Hypothesis
 
-**saphir** (GitHub: `hypatiaa`) · simplified edition v0.1.3 · 23 November 2026
+**saphir** (GitHub: `hypatiaa`) · simplified edition v0.1.4 · 23 November 2026
 
 Attach a unit phase to each prime, and multiply those phases according to the factorisation of an integer. For each fixed positive modulus $B$, this gives a Möbius-weighted polynomial $D_{X,B}$ whose mean-square size can be computed exactly. The Riemann Hypothesis is equivalent to that mean square growing as $O_{B,\delta}(X^{1+\delta})$ for every $\delta > 0$.
 
@@ -122,4 +122,4 @@ The verification record in the repository gives the details and hashes.
 - J. E. Littlewood, *C. R. Acad. Sci. Paris* **154** (1912), 263–266.
 - E. Landau, *Math. Ann.* **61** (1905), 527–550.
 - C. Aistleitner, I. Berkes, K. Seip, *GCD sums from Poisson integrals and systems of dilated functions*, *J. Eur. Math. Soc.* **17** (2015), 1517–1546.
-- The full edition (v0.3.3.1) has the complete references, proofs, and the formal statement list.
+- The full edition (v0.3.3.2) has the complete references, proofs, and the formal statement list.

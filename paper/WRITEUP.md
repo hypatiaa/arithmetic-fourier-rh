@@ -2,7 +2,7 @@
 
 **Author:** saphir (GitHub: `hypatiaa`)  
 **Date:** 2026-11-23  
-**Version:** v0.3.3.1  
+**Version:** v0.3.3.2  
 **2020 Mathematics Subject Classification:** Primary 11M26; Secondary 11N37, 68V20.  
 **Keywords:** Riemann Hypothesis, Möbius function, Mertens function, arithmetic Fourier transform, Poisson measure, orthogonal polynomials, formal verification, Lean 4, Mathlib.
 
