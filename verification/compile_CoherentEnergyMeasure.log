@@ -1,0 +1,24 @@
+CoherentEnergyMeasure.lean:961:20: warning: This simp argument is unused:
+  hmR
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hbm_le]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+CoherentEnergyMeasure.lean:962:36: warning: This simp argument is unused:
+  hmR
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hkne.symm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+CoherentEnergyMeasure.lean:1136:20: warning: This simp argument is unused:
+  measure_univ
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [phiLocal]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+CoherentEnergyMeasure.lean:1441:62: warning: Unused tactic linter: `push_cast` does nothing.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`

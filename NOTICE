@@ -1,0 +1,7 @@
+Arithmetic Fourier energy and the Riemann Hypothesis, in Lean 4
+
+Copyright 2026 saphir and contributors.
+
+The arithmetic Fourier construction (prime phasors, Möbius lift and window, Poisson measure,
+orthogonal modes, the scalar S_B and its inverse, and the energy identity) is saphir's.
+This product includes software formalised with Lean 4 and Mathlib (Apache License 2.0).
