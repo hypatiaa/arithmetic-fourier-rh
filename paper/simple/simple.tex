@@ -7,7 +7,7 @@
 
 \title{The mean square of a prime-phase polynomial\\ and the Riemann Hypothesis}
 \author{saphir (GitHub: \texttt{hypatiaa})}
-\date{Simplified edition v0.1.1 \quad 23 November 2026}
+\date{Simplified edition v0.1.2 \quad 23 November 2026}
 
 \newcommand{\E}{\mathscr{E}}
 
@@ -24,7 +24,7 @@ j(r) = \prod_{p \mid r}\Bigl(1 - \frac{1}{p^2}\Bigr),
 \qquad
 S_B(t) = \sum_{\substack{k \le t\\ (k,B)=1}} \frac{M(t/k)}{k},
 \]
-where $M(t) = \sum_{n \le t} \mu(n)$ is the Mertens function. Lean~4, checked against Mathlib's own definitions, verifies both this identity and the equivalence with RH.
+where $M(t) = \sum_{n \le t} \mu(n)$ is the Mertens function. The mean square averages $|D_{X,B}|^2$ over independent prime phases, with a Poisson law of radius $1/p$ at each prime. Lean~4, checked against Mathlib's own definitions, verifies both this identity and the equivalence with RH.
 
 \section{Why a mean square can carry the Riemann Hypothesis}
 
@@ -75,7 +75,7 @@ Take $d = 6$ and $e = 12$. Then $Z(6)\,\overline{Z(12)} = z_2 z_3 \cdot \overlin
 \]
 The same calculation, prime by prime, gives the general formula $\langle Z(d), Z(e)\rangle = \gcd(d,e)^2/(de)$.
 
-\paragraph{An orthogonal basis, and the identity.} For each prime power, set $\varphi_{p,0} = 1$ and $\varphi_{p,a} = z_p^a - p^{-1} z_p^{a-1}$ for $a \ge 1$. Put $\Psi_r = \prod_{p^a \parallel r} \varphi_{p,a}$. These are orthogonal, with $\|\Psi_r\|^2 = j(r)$. Each monomial expands as $Z(n) = \sum_{r \mid n} (r/n)\,\Psi_r$. Substitute into $D_{X,B}$ and collect: the coefficient of $\Psi_r$ is $S_B(\lfloor X/r \rfloor)$. By orthogonality,
+\paragraph{Orthogonal modes and the energy identity.} For each prime power, set $\varphi_{p,0} = 1$ and $\varphi_{p,a} = z_p^a - p^{-1} z_p^{a-1}$ for $a \ge 1$. Put $\Psi_r = \prod_{p^a \parallel r} \varphi_{p,a}$. These are orthogonal, with $\|\Psi_r\|^2 = j(r)$. Each monomial expands as $Z(n) = \sum_{r \mid n} (r/n)\,\Psi_r$. Substitute into $D_{X,B}$ and collect: the coefficient of $\Psi_r$ is $S_B(\lfloor X/r \rfloor)$. By orthogonality,
 \[
 \|D_{X,B}\|^2 = \sum_{\substack{r \le X\\(r,B)=1}} j(r)\, S_B(\lfloor X/r\rfloor)^2,
 \]
@@ -92,7 +92,7 @@ Everything in Sections~1 and~2 is proved in Lean~4 against Mathlib. The proofs c
 The proofs were checked in several independent ways.
 \begin{itemize}
   \item \textbf{Kernel replay:} every declaration was replayed through Lean's kernel twice, once by our own checker and once by Lean's official \texttt{leanchecker}.
-  \item \textbf{Statement pins:} a separate file restates each headline result using only plain Mathlib definitions written from scratch, and proves each restatement from the repository's theorem. If any definition in the repository meant something other than its name says, that file would not compile.
+  \item \textbf{Statement pins:} each pin states a headline result independently in Mathlib terms. Lean checks that the development proves that statement.
 \end{itemize}
 The verification record in the repository gives the details and hashes.
 
@@ -107,10 +107,10 @@ The verification record in the repository gives the details and hashes.
 \section*{Credits}
 \begin{itemize}
   \item \textbf{saphir:} the construction (prime phases, the M\"obius lift and window, the Poisson measure, the basis $\Psi_r$, the scalar $S_B$ and its inverse, the energy identity), and the direction of the work.
-  \item \textbf{Codex:} wrote the main Lean formalisation, and gave the editorial review this edition follows.
+  \item \textbf{Codex:} wrote the main Lean formalisation.
   \item \textbf{Gemini:} formalised the measure modules and wrote the full edition.
   \item \textbf{Claude:} compilation checks, statement review, prior-art search, and this simplified edition.
-  \item \textbf{Astra:} analytical and editorial review.
+  \item \textbf{ChatGPT 6.2 (Astra/Sol):} analytical review, and the editorial reviews this edition follows.
 \end{itemize}
 
 \section*{References}

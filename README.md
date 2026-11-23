@@ -18,7 +18,7 @@ All of the following are kernel-checked with no `sorry`, and use only `propext`,
 Three independent routes check this:
 - **Kernel replay:** our own replay checker, and Lean's `leanchecker`.
 - **An independent kernel:** `nanoda`, written in Rust, re-checked the 64,601 declarations behind the headline results.
-- **Statement pins:** [`StatementPins.lean`](StatementPins.lean) restates the headline results from scratch in plain Mathlib terms and proves them, so the statements below are exactly what Lean proves.
+- **Statement pins:** each pin in [`StatementPins.lean`](StatementPins.lean) states a headline result independently in Mathlib terms, and Lean checks that the development proves that statement.
 
 - **Exact inversion, for every modulus B.** S_B and the Mertens function M determine each other; M = O(n^θ) ⇔ S_B = O(n^θ).
   - `g_convolution_h`, `S_from_M`, `M_from_S`, `M_power_bound_iff_S`

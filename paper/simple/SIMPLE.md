@@ -1,6 +1,6 @@
 # The mean square of a prime-phase polynomial and the Riemann Hypothesis
 
-**saphir** (GitHub: `hypatiaa`) · simplified edition v0.1.1 · 23 November 2026
+**saphir** (GitHub: `hypatiaa`) · simplified edition v0.1.2 · 23 November 2026
 
 Attach a unit phase to each prime, and multiply those phases according to the factorisation of an integer. For each fixed positive modulus $B$, this gives a Möbius-weighted polynomial $D_{X,B}$ whose mean-square size can be computed exactly. The Riemann Hypothesis is equivalent to that mean square growing as $O_{B,\delta}(X^{1+\delta})$ for every $\delta > 0$.
 
@@ -14,7 +14,7 @@ j(r) = \prod_{p \mid r}\Bigl(1 - \frac{1}{p^2}\Bigr),
 S_B(t) = \sum_{\substack{k \le t\\ (k,B)=1}} \frac{M(t/k)}{k},
 $$
 
-where $M(t) = \sum_{n \le t} \mu(n)$ is the Mertens function. Lean 4, checked against Mathlib's own definitions, verifies both this identity and the equivalence with RH.
+where $M(t) = \sum_{n \le t} \mu(n)$ is the Mertens function. The mean square averages $|D_{X,B}|^2$ over independent prime phases, with a Poisson law of radius $1/p$ at each prime. Lean 4, checked against Mathlib's own definitions, verifies both this identity and the equivalence with RH.
 
 ---
 
@@ -78,7 +78,7 @@ The same calculation, prime by prime, gives the general formula
 
 $$\langle Z(d), Z(e) \rangle = \frac{\gcd(d,e)^2}{d\,e}.$$
 
-### An orthogonal basis, and the identity
+### Orthogonal modes and the energy identity
 
 For each prime power, set $\varphi_{p,0} = 1$ and $\varphi_{p,a} = z_p^a - p^{-1} z_p^{a-1}$ for $a \ge 1$. Put $\Psi_r = \prod_{p^a \parallel r} \varphi_{p,a}$. These are orthogonal, with $\|\Psi_r\|^2 = j(r)$. Each monomial expands as $Z(n) = \sum_{r \mid n} (r/n)\, \Psi_r$.
 
@@ -97,7 +97,7 @@ Everything in §1 and §2 is proved in Lean 4 against Mathlib. The proofs compil
 
 The proofs were checked in several independent ways.
 - **Kernel replay:** every declaration was replayed through Lean's kernel twice, once by our own checker and once by Lean's official `leanchecker`.
-- **Statement pins:** a separate file restates each headline result using only plain Mathlib definitions written from scratch, and proves each restatement from the repository's theorem. If any definition in the repository meant something other than its name says, that file would not compile.
+- **Statement pins:** each pin states a headline result independently in Mathlib terms. Lean checks that the development proves that statement.
 
 The verification record in the repository gives the details and hashes.
 
@@ -112,10 +112,10 @@ The verification record in the repository gives the details and hashes.
 ## Credits
 
 - **saphir:** the construction (prime phases, the Möbius lift and window, the Poisson measure, the basis $\Psi_r$, the scalar $S_B$ and its inverse, the energy identity), and the direction of the work.
-- **Codex:** wrote the main Lean formalisation, and gave the editorial review this edition follows (open with the theorem; lead with the energy squeeze and the worked examples).
+- **Codex:** wrote the main Lean formalisation.
 - **Gemini:** formalised the measure modules and wrote the full edition.
 - **Claude:** compilation checks, statement review, prior-art search, and this simplified edition.
-- **Astra:** analytical and editorial review.
+- **ChatGPT 6.2 (Astra/Sol):** analytical review, and the editorial reviews this edition follows (open with the theorem; lead with the energy squeeze and the worked examples; say what is averaged; narrow the statement-pin claim).
 
 ## References
 
