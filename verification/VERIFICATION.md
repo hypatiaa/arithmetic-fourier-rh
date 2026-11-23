@@ -51,3 +51,12 @@ On 2026-11-23 this repository was built from a fresh copy with `lake exe cache g
 - **Pins:** `lake-manifest.json` records the exact revision of Mathlib and of each of its dependencies.
 
 This build checks that the sources compile. The kernel replays above check the proof terms and axioms.
+
+## The PDF
+
+`paper/paper.pdf` was built on 2026-11-23 from `paper/paper.tex` (sha256 `2b3508c7…44c1c2f1`) with Tectonic 0.17.0, the official x86_64 Linux release, whose archive sha256 was checked against the release's published digest.
+- **Result:** exit code 0; 15 pages; 0 overfull and 0 underfull boxes; no undefined or multiply defined references.
+- **TeX log:** [`tectonic_paper.log`](tectonic_paper.log), sha256 `7d6d728d…df65fb`.
+- **PDF:** sha256 `9534352eaaa93c40377376a6376fd6fe7e1baa2514a3d7287112b3715bcc31ac`.
+
+The write-up's §8 still lists this build as an open item. It was written before the build, and the text in `paper/` is kept exactly as released (v0.3.2).
