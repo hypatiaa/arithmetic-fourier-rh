@@ -25,7 +25,7 @@ These checks were run on a fresh clone of this repository at commit `b633d91`, p
 - All seven compile, and `#print axioms` reports only `propext`, `Classical.choice` and `Quot.sound` for each.
 - The independently written ν and D_{X,B} are equal to the repository's by `rfl`, that is, definitionally.
 
-**What this rules out.** Had a repository definition meant something other than its name, or had a Mathlib name been shadowed, the file would not compile.
+**What this buys.** Each pin states a headline result independently in Mathlib terms, and Lean checks that the development proves that statement.
 
 ## 2. Lean's `leanchecker`
 

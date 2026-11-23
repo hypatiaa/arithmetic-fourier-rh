@@ -45,7 +45,8 @@ Some modules take Ingham's zero-density estimate as an explicit hypothesis (`Zet
 | `CoherentEnergyMeasure.lean` | the Poisson measure and the energy identity |
 | `CoherentEnergyRHBridge.lean` | identification with `Verified` and the measure-norm RH criteria |
 | `fragments/` | the 335 source fragments, plus `assemble.py`, which rebuilds `Verified.lean` exactly |
-| `paper/` | the write-up (Markdown, LaTeX, HTML) |
+| `paper/` | the full write-up v0.3.2 (Markdown, LaTeX, HTML, PDF) |
+| `paper/simple/` | a four-page simplified edition (v0.1.2): the theorem first, then why it works, then the construction one prime at a time |
 | `verification/` | compile and strict replay logs, the replay checker, and `VERIFICATION.md` |
 | `scripts/verify_release.py` | checks this release's hashes, replay verdicts and the reassembly |
 
