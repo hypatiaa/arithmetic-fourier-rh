@@ -63,7 +63,7 @@ The write-up's §8 still lists this build as an open item. It was written before
 
 ## Independent checks
 
-Three further checks of commit `b633d91` are recorded in [`independent_checks/INDEPENDENT_CHECKS.md`](independent_checks/INDEPENDENT_CHECKS.md):
+Three further checks, run on commit `b633d91` and re-run in full on `2d60e22`, are recorded in [`independent_checks/INDEPENDENT_CHECKS.md`](independent_checks/INDEPENDENT_CHECKS.md):
 - **Statement pins:** `StatementPins.lean` restates seven headline results using definitions written from scratch in plain Mathlib, and proves them. All compile with standard axioms only.
 - **`leanchecker`:** Lean's own replay of all four modules. PASS.
 - **`nanoda`:** an independent Rust kernel. It re-checked the full dependency closure of the pins, 64,601 declarations including Mathlib, with no errors and only the standard axioms. PASS.
