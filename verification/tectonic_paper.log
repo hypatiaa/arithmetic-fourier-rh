@@ -474,10 +474,10 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 ]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 67.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 71.
  [2] [3] [4] [5] [6] [7] [8] [9] [10]
 [11] [12] [13] [14] [15] (paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 7B1A6FA6F716AE5D49E5FF343B7CC772;8207.
+(rerunfilecheck)             Checksum: CC53F2B2BBD59654B3E0132EBF514901;8421.
  )
-Output written on paper.xdv (15 pages, 358676 bytes).
+Output written on paper.xdv (15 pages, 358044 bytes).

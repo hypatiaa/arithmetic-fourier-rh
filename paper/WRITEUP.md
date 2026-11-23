@@ -2,7 +2,7 @@
 
 **Author:** saphir (GitHub: `hypatiaa`)  
 **Date:** 2026-11-23  
-**Version:** v0.3.2  
+**Version:** v0.3.3.1  
 **2020 Mathematics Subject Classification:** Primary 11M26; Secondary 11N37, 68V20.  
 **Keywords:** Riemann Hypothesis, Möbius function, Mertens function, arithmetic Fourier transform, Poisson measure, orthogonal polynomials, formal verification, Lean 4, Mathlib.
 
@@ -10,19 +10,29 @@
 
 ## Abstract
 
-We present an arithmetic Fourier construction for the Möbius function $\mu$ and a Lean 4 formalization of its associated equivalence theorems for the Riemann Hypothesis (RH). On the analytic side, unit prime phasors $z_p = e^{i\theta_p}$ are attached to each prime $p$ via $Z(n) = \prod_p z_p^{v_p(n)}$ and combined with a Möbius divisor lift and an inclusion–exclusion window $w_{X,B}$ modulo a parameter $B \ge 1$ to form a trigonometric polynomial $D_{X,B}(\mathbf{z})$. Under the product Poisson measure $\nu = \bigotimes_p \nu_p$ with radial parameter $\rho_p = 1/p$, the prime-power local differences $\Psi_r = \prod_{p^a \parallel r} (z_p^a - p^{-1} z_p^{a-1})$ form an orthogonal system satisfying $\langle \Psi_r, \Psi_s \rangle_\nu = \mathbf{1}_{r=s} j(r)$ with $j(r) = \prod_{p \mid r} (1 - p^{-2})$, diagonalizing the $L^2(\nu)$-energy into
-$$\mathscr{E}_B(X) = \|D_{X,B}\|_\nu^2 = \sum_{\substack{r \le X \\ (r,B)=1}} j(r)\, S_B(\lfloor X/r \rfloor)^2.$$
-Here $S_B$ is a coprime weighted sum of Mertens values, and Möbius inversion recovers the Mertens function $M$ exactly from $S_B$.
-
-In the formal Lean 4 development (*Arithmetic Fourier and Compensated Trace in Lean*, `v2.6.4`, comment-scrubbed successor to `v2.6.3`, compiled against Lean 4.35.0 and Mathlib `56a00585`) together with its companion Poisson-measure and RH-bridge formalization (`CoherentEnergyMeasure` and `CoherentEnergyRHBridge`), every main equivalence and the Section 2 measure diagonalization are kernel-checked without `sorry`, with zero partial or unsafe constants, using only the three standard Lean axioms (`propext`, `Classical.choice`, `Quot.sound`). Specifically, in `v2.6.4` for every natural modulus $B \in \mathbb{N}$: (i) $S_B$ and $M$ invert each other and satisfy $M(n) = O(n^\theta) \iff S_B(n) = O(n^\theta)$ for every $\theta > 0$; (ii) $\mathrm{RH} \iff \mathscr{E}_B(X) \le C_\delta X^{1+\delta}$ for all $X \ge 1$ and $\delta > 0$; and (iii) for either fixed sign $\sigma \in \{1, -1\}$, $\mathrm{RH}$ is equivalent to the one-sided bound $\sigma S_B(n) \ge -C_\varepsilon n^{1/2+\varepsilon}$ for sufficiently large $n$ and every $\varepsilon > 0$, together with the corresponding equivalences for any zero-free half-plane $\operatorname{Re} s > a$ ($\tfrac{1}{2} \le a < 1$). In that Poisson-measure development, the Parseval identity $\mathscr{E}_B(X) = \|D_{X,B}\|_\nu^2$ (`norm_sq_D_eq_coherent_energy`) and its direct $L^2(\nu)$ RH and fixed-strip criteria (`coherent_energy_measure_growth_iff_RH` and `fixed_strip_iff_coherent_energy_measure_power`) are likewise formalized and kernel-checked for every $B \ge 1$ and natural $X \ge 1$, complemented by the exact finite controls detailed in Section 2.4. All results presented here are structural identities and equivalences: no unconditional square-root power saving for $S_B$, $\mathscr{E}_B$, $D_{X,B}$, or $M$ is proved.
+We attach a unit phase to each prime and multiply those phases according to the factorization of an integer. For each fixed integer modulus $B \ge 1$, this defines a Möbius-weighted trigonometric polynomial $D_{X,B}$ whose mean-square size under the product Poisson measure $\nu$ (radius $1/p$ at each prime $p$) can be computed explicitly:
+$$\|D_{X,B}\|_\nu^2 = \sum_{\substack{r \le X \\ (r,B)=1}} j(r)\, S_B(\lfloor X/r \rfloor)^2, \qquad j(r) = \prod_{p \mid r} \left(1 - \frac{1}{p^2}\right), \qquad S_B(t) = \sum_{\substack{k \le t \\ (k,B)=1}} \frac{M(t/k)}{k},$$
+where $M(t) = \sum_{1 \le n \le t} \mu(n)$ is the Mertens function. The Riemann Hypothesis is equivalent to $\|D_{X,B}\|_\nu^2 = O_{B,\delta}(X^{1+\delta})$ for every $\delta > 0$, to two-sided and one-sided bounds on $S_B$, and in scaled form to zero-free half-planes $\operatorname{Re} s > a$ ($\tfrac{1}{2} \le a < 1$). Lean 4, checked against Mathlib's own definitions, verifies both this energy identity ($B \ge 1$) and its equivalence with RH for every fixed modulus (Section 6 records the kernel replay, statement reviews, and checksums). Every result is an equivalence or an identity: no unconditional square-root growth bound for $S_B$, $D_{X,B}$, or $M$ is proved.
 
 ---
 
-## 1. Introduction
+## 1. Why a Mean Square Can Carry the Riemann Hypothesis
 
-Classical reformulations of the Riemann Hypothesis translate non-vanishing of the Riemann zeta function $\zeta(s)$ in the half-plane $\operatorname{Re} s > \tfrac{1}{2}$ into cancellation bounds for the Mertens function $M(x) = \sum_{n \le x} \mu(n)$ and related summatory functions [Littlewood 1912; Titchmarsh 1986; Montgomery–Vaughan 2007]. By Littlewood's equivalence and Landau's positivity theorem for Dirichlet integrals [Landau 1905; Mertens 1897], $\mathrm{RH}$ holds if and only if $M(x) = O_\varepsilon(x^{1/2+\varepsilon})$ for every $\varepsilon > 0$, and in fact a one-sided bound $\sigma M(x) \ge -C_\varepsilon x^{1/2+\varepsilon}$ (with either fixed sign $\sigma = \pm 1$) already suffices.
+Write $\mathscr{E}_B(X)$ for the right-hand side of the mean-square identity in the Abstract. Four short steps explain why bounding this single sum of squares captures the full content of the Riemann Hypothesis (RH).
 
-The work documented here pairs a prime-phasor Hilbert-space construction—originating in `saphir`'s arithmetic Fourier instrument (October 2026)—with a standalone, machine-checked Lean 4 library formalized against Mathlib [de Moura–Ullrich 2021; mathlib Community 2020]. Rather than working directly with $M(x)$ alone, the construction attaches a unit circle variable $z_p = e^{i\theta_p}$ to each prime $p$, weights the Möbius divisor lift by a sieving window modulo $B$, and places a product Poisson law on $\mathbb{T}^{\mathcal{P}}$ with radii $1/p$. Orthogonalizing $Z(n) = \prod_p z_p^{v_p(n)}$ with respect to this measure collapses the entire quadratic energy $\|D_{X,B}\|_\nu^2$ to a positive linear combination of squares of a single real scalar $S_B(n)$.
+**The energy controls the scalar.** At $r = 1$ the weight is $j(1) = 1$, so the first term of the sum is $S_B(X)^2$. Every other term is non-negative, giving $S_B(X)^2 \le \mathscr{E}_B(X)$.
+
+**The scalar controls the energy.** If $|S_B(t)| \le A\, t^\theta$ for some $\theta > \tfrac{1}{2}$, then each term is at most $A^2 (X/r)^{2\theta}$, and since $0 \le j(r) \le 1$,
+$$\mathscr{E}_B(X) \le A^2 \sum_{r \ge 1} r^{-2\theta}\, X^{2\theta} = A^2\, \zeta(2\theta)\, X^{2\theta}.$$
+Hence $S_B(n) \ll_\varepsilon n^{1/2+\varepsilon}$ for every $\varepsilon > 0$ holds if and only if $\mathscr{E}_B(X) \ll_\delta X^{1+\delta}$ for every $\delta > 0$.
+
+**The scalar is the Mertens function in disguise.** Put $g_B(k) = 1/k$ when $\gcd(k, B) = 1$ and $0$ otherwise, and $h_B(k) = \mu(k)\, g_B(k)$. Because $g_B$ is completely multiplicative, $g_B * h_B = \delta_1$ under Dirichlet convolution, yielding the exact two-way inversion
+$$S_B(n) = \sum_{k=1}^n g_B(k)\, M(\lfloor n/k \rfloor), \qquad M(n) = \sum_{k=1}^n h_B(k)\, S_B(\lfloor n/k \rfloor).$$
+Both kernels satisfy $|g_B(k)|, |h_B(k)| \le 1/k$, so any power bound passes through either sum unchanged: $M(n) = O(n^\theta) \iff S_B(n) = O(n^\theta)$ for every $\theta > 0$.
+
+**The classical step.** By Littlewood [1912], RH holds if and only if $M(x) = O_\varepsilon(x^{1/2+\varepsilon})$ for every $\varepsilon > 0$ [Titchmarsh 1986; Montgomery–Vaughan 2007]. Putting the four steps together gives
+$$\mathrm{RH} \iff M \ll_\varepsilon x^{1/2+\varepsilon} \iff S_B \ll_\varepsilon n^{1/2+\varepsilon} \iff \mathscr{E}_B(X) \ll_\delta X^{1+\delta} \iff \|D_{X,B}\|_\nu^2 \ll_\delta X^{1+\delta}.$$
+That is why a question about the norm of a trigonometric polynomial carries the full content of RH. One sign is already enough: using the coprime Dirichlet factor $L(g_B, s)$ and Landau's positivity theorem [Landau 1905; Mertens 1897], a lower bound $\sigma S_B(n) \ge -C_\varepsilon n^{1/2+\varepsilon}$ for either fixed sign $\sigma \in \{1, -1\}$ is also equivalent to RH, and shifting the exponent $a \in [\tfrac{1}{2}, 1)$ covers zero-free half-planes $\operatorname{Re} s > a$. Originating in `saphir`'s arithmetic Fourier instrument (October 2026), the construction and all equivalences are formalized in Lean 4 against Mathlib [de Moura–Ullrich 2021; mathlib Community 2020].
 
 ### Main Results and Epistemic Scope
 
@@ -42,7 +52,7 @@ To maintain strict transparency between machine-verified proofs, classical analy
 
 ### Organization of the Paper
 
-Section 2 develops the prime-phasor lifts, the inclusion–exclusion window, the Poisson Hilbert space $L^2(\Omega, \nu)$, and the Parseval identity connecting $\|D_{X,B}\|_\nu^2$ to $\mathscr{E}_B(X)$. Section 3 presents the formalized definitions, finite Dirichlet-convolution inversion, and the two-sided energy squeeze in Lean 4. Section 4 isolates the coprime Dirichlet factor $L(g_B, s)$ and its reciprocal. Section 5 states and explains the proof architecture for the two-sided and one-sided half-plane and RH equivalences, explicitly separating conditional zero-density results. Section 6 records the scope of formal verification. Section 7 compares the construction and Lean 4 formalization with related analytic and formalization prior art. Section 8 discusses scope, limitations, and open problems.
+Section 1 explains the four-step equivalence chain and fixes epistemic scope. Section 2 develops the prime-phasor lifts, worked examples, inclusion–exclusion window, Poisson Hilbert space $L^2(\Omega, \nu)$, and Parseval identity connecting $\|D_{X,B}\|_\nu^2$ to $\mathscr{E}_B(X)$. Section 3 presents the formalized definitions, finite Dirichlet-convolution inversion, and the two-sided energy squeeze in Lean 4. Section 4 isolates the coprime Dirichlet factor $L(g_B, s)$ and its reciprocal. Section 5 states and explains the proof architecture for the two-sided and one-sided half-plane and RH equivalences, explicitly separating conditional zero-density results. Section 6 records the scope of formal verification. Section 7 compares the construction and Lean 4 formalization with related analytic and formalization prior art. Section 8 discusses scope, limitations, and open problems.
 
 ---
 
@@ -60,7 +70,7 @@ $$Z(n) = Z(n; \mathbf{z}) := \prod_{p \in \mathcal{P}} z_p^{v_p(n)},$$
 where $v_p(n)$ is the $p$-adic valuation of $n$ (with $Z(1) = 1$). For $N \ge 1$, define the *divisor lift* $L_N(\mathbf{z})$ and the *Möbius lift* $A_N(\mathbf{z})$ by
 $$L_N(\mathbf{z}) := \sum_{d \mid N} Z(d) = \prod_{p^a \parallel N} \left(1 + z_p + \dots + z_p^a\right),$$
 $$A_N(\mathbf{z}) := \sum_{d \mid N} \mu(N/d)\, Z(d) = \prod_{p^a \parallel N} z_p^{a-1}(z_p - 1),$$
-where $p^a \parallel N$ indicates $a = v_p(N) \ge 1$ and empty products equal $1$. Note that $Z(n)$ restricts on the logarithmic slice $\theta_p = \tau \log p$ ($\tau \in \mathbb{R}$) to $Z(n) = n^{i\tau}$. For example, $A_6(\mathbf{z}) = (z_2 - 1)(z_3 - 1)$ and $A_{12}(\mathbf{z}) = z_2 (z_2 - 1)(z_3 - 1) = z_2 A_6(\mathbf{z})$.
+where $p^a \parallel N$ indicates $a = v_p(N) \ge 1$ and empty products equal $1$. For example, $A_6(\mathbf{z}) = (z_2 - 1)(z_3 - 1)$ and $A_{12}(\mathbf{z}) = z_2 (z_2 - 1)(z_3 - 1) = z_2 A_6(\mathbf{z})$: multiplying by one more factor of $2$ rotates the existing lift by the prime-two phase. On the logarithmic slice $\theta_p = \tau \log p$ ($\tau \in \mathbb{R}$), one gets $Z(n) = n^{i\tau}$, so a Dirichlet series on a vertical line is one view of the instrument.
 
 ### 2.2 Inclusion–Exclusion Sieving Window
 
@@ -93,6 +103,11 @@ $$\varphi_{p,0}(z_p) := 1, \qquad \varphi_{p,a}(z_p) := z_p^a - p^{-1} z_p^{a-1}
 and the global product functions
 $$\Psi_r(\mathbf{z}) := \prod_{p^a \parallel r} \varphi_{p,a}(z_p) \qquad (r \ge 1), \qquad j(r) := \prod_{p \mid r} \left(1 - p^{-2}\right),$$
 with $\Psi_1 = 1$ and $j(1) = 1$.
+
+**Worked Example ($\langle Z(6), Z(12)\rangle_\nu = \tfrac{1}{2}$).**  
+Because the normalized Poisson kernel $\mathcal{P}_{1/p}(\theta) = \sum_{m \in \mathbb{Z}} p^{-|m|} e^{im\theta}$ gives coordinate moments $\mathbb{E}_{\nu_p}[z_p^a \overline{z_p^b}] = p^{-|a-b|}$, product independence reduces every Gram inner product prime by prime. Take $d = 6 = 2 \cdot 3$ and $e = 12 = 2^2 \cdot 3$. Then
+$$Z(6)\,\overline{Z(12)} = (z_2 z_3)\,\overline{(z_2^2 z_3)} = \overline{z_2}, \qquad \langle Z(6), Z(12) \rangle_\nu = \mathbb{E}_{\nu_2}[\overline{z_2}] = \frac{1}{2} = \frac{\gcd(6, 12)^2}{6 \cdot 12}.$$
+The common prime-three phase cancels ($\mathbb{E}_{\nu_3}[z_3\overline{z_3}] = 1$), leaving one conjugate prime-two phase whose mean is $1/2$.
 
 **Proposition 2.5 (Orthogonality and coherent-energy diagonalization).**  
 *In the Hilbert space $L^2(\Omega, \nu)$:*
@@ -288,11 +303,11 @@ By direct line inspection and replay cross-check, independent statement reviews 
 
 ### 6.3 Shipped Edition Checksums (SHA-256)
 
-Checksums below identify the companion files shipped directly in this `v0.3.2` writeup package:
+Checksums below identify the companion files shipped directly in this `v0.3.3` writeup package:
 
-- **Reader guide** (`README.md`, `9,065` B): `52affdd87f17ef2d59eb56a2d75fe538b15102b6fc4c805cd71889d2d98a8d9d`
-- **Edition changelog** (`CHANGELOG_v0_3_1_to_v0_3_2.md`, `4,223` B): `2e3d091b8f74da63fc61ebe77eb92e8bc8b67dce2a349091cbb1b5f81820d9f5`
-- **Edition verifier** (`verify_v0_3_2.py`, `21,304` B): `8768831fd7cc9ee4993929039971e105393bcd48bf59006c7b0f727f058a66c5`
+- **Reader guide** (`README.md`, `8,816` B): `91246b12f0a1e592f0199eafaa20221255dc99bb6bed12e62ffb3687223b3f78`
+- **Edition changelog** (`CHANGELOG_v0_3_2_to_v0_3_3.md`, `2,713` B): `5cf9dc25ac95d8010008a207a98bf8f2ed93973c949234e0dc18ec37c2aeaf98`
+- **Edition verifier** (`verify_v0_3_3.py`, `22,516` B): `03c8db30008f6817fb2065ab65cd4964d2bdd309199721aaaa40116678649660`
 
 The accompanying `SHA256SUMS.txt` manifest records the final digests of all six package items, including the three reading editions. External Lean-release, kernel-replay, and October 2026 finite-control digests are pinned in the edition verifier and summarized in the reader guide.
 
@@ -325,14 +340,13 @@ To our knowledge—based on public GitHub and arXiv searches as of November 2026
 3. **Open formalization and computational directions.**  
    - Formalize the analytic closed-span complement example ($\overline{z_p} - p^{-1} \perp Z(n)$ in $L^2(\Omega, \nu)$) noted after Proposition 2.5.
    - Extend independent statement review beyond the principal equivalences of `v2.6.4` and the headline statements of `CoherentEnergyMeasure` / `CoherentEnergyRHBridge` to auxiliary compensated-trace modules and internal helper lemmas.
-   - Compile the LaTeX manuscript on a host with XeLaTeX or Tectonic and run an overfull-box print layout check (no TeX engine was installed on the build workstation for `v0.3.2`).
    - Implement the interactive arithmetic-energy viewer extension left open in the October 2026 specification.
 
 ---
 
 ## Acknowledgments and Contributions
 
-`saphir` originated the arithmetic Fourier construction documented in Section 2—the prime-phasor lifts $Z(n)$ and $A_N$, the inclusion–exclusion window $w_{X,B}$, the product Poisson measure $\nu$, the orthogonal system $\{\Psi_r\}$, the scalar $S_B$, its exact Möbius inverse, and the coherent-energy diagonalization—and directed the October 2026 finite rational verification suite (run under `saphir`'s direction). Under `saphir`'s direction: **Codex** authored the core Lean 4 formalization (coprime inversion, energy bounds, Euler factor, RH and zero-free strip equivalences, and compensated-trace development); **Claude Fable** performed independent compilation and the initial statement audit; **Claude Opus** produced the `v0.1` manuscript draft, the `v2.6.2`/`v2.6.3` renames and comment pass, the `v0.2.1` edition audit, the prior-art literature review (identifying Aistleitner–Berkes–Seip [2015] and Mathlib4 PR `#46101`), and the `v0.3.1` independent statement review of `v2.6.4`, `CoherentEnergyMeasure`, and `CoherentEnergyRHBridge`; **Astra** contributed analytical reviews, mathematical design notes on the Fourier-shell and dyadic constructions, and editorial review of the prior-art comparison and publication scope; and **Gemini** prepared the comment-scrubbed `v2.6.4` assembly and kernel replay, formalized and replayed `CoherentEnergyMeasure` and `CoherentEnergyRHBridge`, and authored the `v0.2`, `v0.3`, `v0.3.1`, and `v0.3.2` writeup revisions. Responsibility for verifying mathematical correctness beyond the scope described in Section 6 remains human; no external peer review is implied.
+`saphir` originated the arithmetic Fourier construction documented in Section 2—the prime-phasor lifts $Z(n)$ and $A_N$, the inclusion–exclusion window $w_{X,B}$, the product Poisson measure $\nu$, the orthogonal system $\{\Psi_r\}$, the scalar $S_B$, its exact Möbius inverse, and the coherent-energy diagonalization—and directed the October 2026 finite rational verification suite (run under `saphir`'s direction). Under `saphir`'s direction: **Codex** authored the core Lean 4 formalization (coprime inversion, energy bounds, Euler factor, RH and zero-free strip equivalences, and compensated-trace development); **Claude Fable** performed independent compilation and the initial statement audit; **Claude Opus** produced the `v0.1` manuscript draft, the `v2.6.2`/`v2.6.3` renames and comment pass, the `v0.2.1` edition audit, the prior-art literature review (identifying Aistleitner–Berkes–Seip [2015] and Mathlib4 PR `#46101`), the `v0.3.1` independent statement review of `v2.6.4`, `CoherentEnergyMeasure`, and `CoherentEnergyRHBridge`, and the simplified companion edition (`v0.1`) whose opening and Section 1 are adapted here; **ChatGPT 6.2 (Astra/Sol)** contributed analytical reviews, mathematical design notes on the Fourier-shell and dyadic constructions, and the editorial reviews followed by the simplified edition and this revision (opening with the theorem, leading with the energy squeeze and the worked examples), as well as review of the prior-art comparison and publication scope; and **Gemini** prepared the comment-scrubbed `v2.6.4` assembly and kernel replay, formalized and replayed `CoherentEnergyMeasure` and `CoherentEnergyRHBridge`, and authored the `v0.2`, `v0.3`, `v0.3.1`, `v0.3.2`, and `v0.3.3` writeup revisions. Responsibility for verifying mathematical correctness beyond the scope described in Section 6 remains human; no external peer review is implied.
 
 ---
 
