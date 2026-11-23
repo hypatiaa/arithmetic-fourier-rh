@@ -64,7 +64,7 @@ To check the release files without Lean: `python scripts/verify_release.py`.
 ## Credits
 
 - **saphir:** the arithmetic Fourier construction (prime phasors, the Möbius lift and window, the Poisson measure, the modes Ψ_r, the scalar S_B and its inverse, and the energy identity), and the direction of the work.
-- **The formalisation:** Codex wrote the main Lean development. Gemini formalised the measure modules and assembled the release. Claude (Fable and Opus) did the independent compilation, the statement audits and the prior-art review. The write-up gives the details.
+- **The formalisation:** Codex wrote the main Lean development. Gemini formalised the measure modules and assembled the release. Claude (Fable and Opus) did the independent compilation, the statement audits and the prior-art review. The write-up gives the details. ChatGPT 6.2 (Astra/Sol) gave the analytical and editorial reviews.
 - **Prior art:**
   - The Poisson Gram kernel gcd(d,e)²/(de) belongs to the GCD-sum literature: Aistleitner–Berkes–Seip, JEMS 2015, and earlier work of Hedenmalm, Lindqvist, Seip and Hilberdink.
   - The two-sided and one-sided criteria are in the lineage of Mertens, Landau and Littlewood.
