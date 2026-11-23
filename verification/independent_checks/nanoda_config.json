@@ -1,0 +1,24 @@
+{
+  "export_file_path": "export.ndjson",
+  "use_stdin": false,
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "unpermitted_axiom_hard_error": false,
+  "nat_extension": true,
+  "string_extension": true,
+  "pp_declars": [
+    "StatementPins.pin_rh_iff_norm",
+    "StatementPins.pin_energy_identity",
+    "StatementPins.pin_rh_iff_one_sided",
+    "StatementPins.pin_rh_iff_mertens",
+    "StatementPins.poly",
+    "StatementPins.nu",
+    "StatementPins.scalar"
+  ],
+  "pp_output_path": "nanoda_pp.txt",
+  "pp_to_stdout": false,
+  "print_success_message": true
+}

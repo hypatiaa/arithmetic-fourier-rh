@@ -60,3 +60,10 @@ This build checks that the sources compile. The kernel replays above check the p
 - **PDF:** sha256 `9534352eaaa93c40377376a6376fd6fe7e1baa2514a3d7287112b3715bcc31ac`.
 
 The write-up's §8 still lists this build as an open item. It was written before the build, and the text in `paper/` is kept exactly as released (v0.3.2).
+
+## Independent checks
+
+Three further checks of commit `b633d91` are recorded in [`independent_checks/INDEPENDENT_CHECKS.md`](independent_checks/INDEPENDENT_CHECKS.md):
+- **Statement pins:** `StatementPins.lean` restates seven headline results using definitions written from scratch in plain Mathlib, and proves them. All compile with standard axioms only.
+- **`leanchecker`:** Lean's own replay of all four modules. PASS.
+- **`nanoda`:** an independent Rust kernel. It re-checked the full dependency closure of the pins, 64,601 declarations including Mathlib, with no errors and only the standard axioms. PASS.

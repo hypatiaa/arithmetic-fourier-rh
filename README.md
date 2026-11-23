@@ -15,6 +15,11 @@ saphir's arithmetic Fourier instrument for the Möbius function, and a Lean 4 / 
 
 All of the following are kernel-checked with no `sorry`, and use only `propext`, `Classical.choice` and `Quot.sound`. Strict replay records are in [`verification/`](verification/).
 
+Three independent routes check this:
+- **Kernel replay:** our own replay checker, and Lean's `leanchecker`.
+- **An independent kernel:** `nanoda`, written in Rust, re-checked the 64,601 declarations behind the headline results.
+- **Statement pins:** [`StatementPins.lean`](StatementPins.lean) restates the headline results from scratch in plain Mathlib terms and proves them, so the statements below are exactly what Lean proves.
+
 - **Exact inversion, for every modulus B.** S_B and the Mertens function M determine each other; M = O(n^θ) ⇔ S_B = O(n^θ).
   - `g_convolution_h`, `S_from_M`, `M_from_S`, `M_power_bound_iff_S`
 - **The energy identity, for every B ≥ 1.** The Poisson measure gives Gram kernel gcd(d,e)²/(de); the Ψ_r are orthogonal; and ∫ ‖D_{X,B}‖² dν equals the energy above.
@@ -40,8 +45,7 @@ Some modules take Ingham's zero-density estimate as an explicit hypothesis (`Zet
 | `CoherentEnergyMeasure.lean` | the Poisson measure and the energy identity |
 | `CoherentEnergyRHBridge.lean` | identification with `Verified` and the measure-norm RH criteria |
 | `fragments/` | the 335 source fragments, plus `assemble.py`, which rebuilds `Verified.lean` exactly |
-| `paper/` | the full write-up v0.3.2 (Markdown, LaTeX, HTML, PDF) |
-| `paper/simple/` | a four-page simplified edition: the theorem first, then why it works, then the construction one prime at a time |
+| `paper/` | the write-up (Markdown, LaTeX, HTML) |
 | `verification/` | compile and strict replay logs, the replay checker, and `VERIFICATION.md` |
 | `scripts/verify_release.py` | checks this release's hashes, replay verdicts and the reassembly |
 

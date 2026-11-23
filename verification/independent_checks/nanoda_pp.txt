@@ -1,0 +1,68 @@
+theorem StatementPins.pin_rh_iff_norm :
+  forall {B : Nat},
+  LE.le (OfNat.ofNat 1) B → Iff RiemannHypothesis
+    (forall (δ : Real),
+    LT.lt (OfNat.ofNat 0) δ → Exists
+      (fun (C : Real) =>
+      And (LE.le (OfNat.ofNat 0) C)
+        (forall (X : Nat),
+        LE.le (OfNat.ofNat 1) X → LE.le
+          (MeasureTheory.integral StatementPins.nu
+            (fun (θ : Nat → Real) => HPow.hPow (Norm.norm (StatementPins.poly B X θ)) (OfNat.ofNat 2)))
+          (HMul.hMul C (HPow.hPow (Nat.cast X) (HAdd.hAdd (OfNat.ofNat 1) δ)))))) :=
+  _
+
+theorem StatementPins.pin_energy_identity :
+  forall {B : Nat},
+  LE.le (OfNat.ofNat 1) B → (forall (X : Nat),
+  Eq
+    (MeasureTheory.integral StatementPins.nu
+      (fun (θ : Nat → Real) => HPow.hPow (Norm.norm (StatementPins.poly B X θ)) (OfNat.ofNat 2)))
+    (StatementPins.energy B X)) :=
+  _
+
+theorem StatementPins.pin_rh_iff_one_sided (B : Nat) :
+  forall {σ : Real},
+  Or (Eq σ (OfNat.ofNat 1)) (Eq σ (Neg.neg (OfNat.ofNat 1))) → Iff RiemannHypothesis
+    (forall (ε : Real),
+    LT.lt (OfNat.ofNat 0) ε → Exists
+      (fun (C : Real) =>
+      And (LE.le (OfNat.ofNat 0) C)
+        (Filter.Eventually
+          (fun (n : Nat) =>
+          LE.le
+            (Neg.neg (HMul.hMul C (HPow.hPow (Nat.cast n) (HAdd.hAdd (HDiv.hDiv (OfNat.ofNat 1) (OfNat.ofNat 2)) ε))))
+            (HMul.hMul σ (StatementPins.scalar B n))) Filter.atTop))) :=
+  _
+
+theorem StatementPins.pin_rh_iff_mertens :
+  Iff RiemannHypothesis
+    (forall (ε : Real),
+    LT.lt (OfNat.ofNat 0) ε → Asymptotics.IsBigO Filter.atTop
+      (fun (x : Real) =>
+      Finset.sum (Finset.Icc (OfNat.ofNat 1) (Nat.floor x))
+        (fun (n : Nat) => Int.cast (DFunLike.coe ArithmeticFunction.moebius n)))
+      (fun (x : Real) => HPow.hPow x (HAdd.hAdd (HDiv.hDiv (OfNat.ofNat 1) (OfNat.ofNat 2)) ε))) :=
+  _
+
+def StatementPins.poly (B d : Nat) (θ : Nat → Real) : Complex :=
+  Finset.sum (Finset.filter (fun (k : Nat) => Nat.Coprime k B) (Finset.Icc (OfNat.ofNat 1) d))
+    (fun (n : Nat) =>
+    HMul.hMul (Complex.ofReal (StatementPins.window B d n))
+      (Finset.sum (Nat.divisors n)
+        (fun (d : Nat) =>
+        HMul.hMul (Int.cast (DFunLike.coe ArithmeticFunction.moebius (HDiv.hDiv n d)))
+          (StatementPins.phasorMonomial d θ))))
+
+def StatementPins.nu : MeasureTheory.Measure (Nat → Real) := MeasureTheory.Measure.infinitePi StatementPins.poisson
+
+def StatementPins.scalar (B n : Nat) : Real :=
+  Finset.sum (Finset.filter (fun (k : Nat) => Nat.Coprime k B) (Finset.Icc (OfNat.ofNat 1) n))
+    (fun (k : Nat) => HDiv.hDiv (StatementPins.mertensFn (HDiv.hDiv n k)) (Nat.cast k))
+
+axiom propext {a b : Prop} : Iff a b → Eq a b
+
+axiom Quot.sound.{u} {α : Sort u} {r : α → α → Prop} {a b : α} : r a b → Eq (Quot.mk r a) (Quot.mk r b)
+
+axiom Classical.choice.{u} {α : Sort u} : Nonempty α → α
+

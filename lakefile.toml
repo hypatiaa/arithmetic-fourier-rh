@@ -1,5 +1,5 @@
 name = "ArithmeticFourierRH"
-defaultTargets = ["ArithmeticFourierRH"]
+defaultTargets = ["ArithmeticFourierRH", "StatementPins"]
 
 # The proofs were compiled and replayed with maxHeartbeats = 800000.
 [leanOptions]
@@ -14,3 +14,8 @@ rev = "56a005855ea17e0b0958f73ec801ae140b0a1679"
 [[lean_lib]]
 name = "ArithmeticFourierRH"
 roots = ["Verified", "CoherentEnergyMeasure", "CoherentEnergyRHBridge"]
+
+# Independent restatements of the headline results in plain Mathlib terms.
+[[lean_lib]]
+name = "StatementPins"
+roots = ["StatementPins"]
