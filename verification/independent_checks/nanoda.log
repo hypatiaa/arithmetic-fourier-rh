@@ -1,4 +1,4 @@
 Checked 64601 declarations with no errors
-40.42user 0.32system 0:40.75elapsed 99%CPU (0avgtext+0avgdata 545504maxresident)k
-2336inputs+16outputs (10major+170427minor)pagefaults 0swaps
+39.77user 0.37system 0:40.15elapsed 99%CPU (0avgtext+0avgdata 545332maxresident)k
+0inputs+16outputs (0major+170424minor)pagefaults 0swaps
 nanoda_rc=0

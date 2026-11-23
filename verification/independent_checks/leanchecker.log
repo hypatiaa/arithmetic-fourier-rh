@@ -1,5 +1,3 @@
-
-real	0m32.300s
-user	0m21.760s
-sys	0m20.096s
+22.37user 19.51system 0:30.83elapsed 135%CPU (0avgtext+0avgdata 13182832maxresident)k
+494776inputs+0outputs (1major+2599095minor)pagefaults 0swaps
 leanchecker_rc=0

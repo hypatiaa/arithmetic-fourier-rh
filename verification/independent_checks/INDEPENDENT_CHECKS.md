@@ -1,11 +1,11 @@
 # Independent checks (2026-11-23)
 
-These checks were run on a fresh clone of this repository at commit `b633d91`, plus `StatementPins.lean`, with Lean 4.35.0 and the pinned Mathlib. They add two kinds of evidence to the replay records in `../VERIFICATION.md`:
+These checks were first run on a fresh clone of commit `b633d91` plus `StatementPins.lean`, and re-run in full on commit `2d60e22`, which narrowed the header comment of `StatementPins.lean`. Both runs used Lean 4.35.0 and the pinned Mathlib. They add two kinds of evidence to the replay records in `../VERIFICATION.md`:
 
 - **Different checkers:** Lean's own `leanchecker`, and `nanoda`, a type checker written separately in Rust.
 - **The statements:** `StatementPins.lean` checks what the theorems say, not only whether their proofs are valid.
 
-## 1. Statement pins (`StatementPins.lean`, sha256 `33e38ace…7604225`)
+## 1. Statement pins (`StatementPins.lean`, sha256 `af9f8ee7…a494e2`)
 
 **What the file does.**
 - It defines from scratch, using only Mathlib, the Mertens function, saphir's scalar S_B, the weights j(r), the energy, the Poisson measure ν and the polynomial D_{X,B}. No definition from this repository is used.
@@ -67,7 +67,17 @@ theorem StatementPins.pin_rh_iff_norm :
 
 ## Hashes
 
-- `leanchecker.log`: `40136e14085292208fde40795c1799307c69b75cd672a3882cf4047e3ae7db82`
-- `nanoda.log`: `6e702c965843aabb96e8ab55229abe915c835ce29c107fd4d9e203e2e0968fc1`
+- `leanchecker.log` (re-check of `2d60e22`): `abf1f26a45f0db26d37769a7ae484aaf98420dd64edec67ee8e865833816b3a4`
+- `nanoda.log` (re-check of `2d60e22`): `be83c8a8d1de29daa994d68159ffcf34a1413d729f80b84d13495a922bb350d7`
 - `nanoda_pp.txt`: `3243262a576fd6d398572263fe213eafd10f2d5a6bf9984bcf1f84a3389b7816`
 - the export (not shipped, 468 MB): `1813ece96f59b0ab3fe50baac34a93a9a1b22cfc1fbb37ca136e15e84a59cb64`
+
+## Re-check after the comment change (commit `2d60e22`)
+
+`StatementPins.lean` changed only in its header comment: sha256 `33e38ace…7604225` became `af9f8ee7d80e58c608db3c7adbc17ca15292e8487fc33cd7c4c2e23439a494e2`. The whole chain was re-run on a fresh clone of that commit:
+- **`lake build`:** 4,089 jobs, exit 0; all seven pins report only `propext`, `Classical.choice` and `Quot.sound`.
+- **`leanchecker`:** all four modules, exit 0.
+- **`leanexport` of the seven pins:** byte-identical to the first run, sha256 `1813ece9…a59cb64`, 468,107,587 bytes. A comment change leaves every declaration unchanged, and the identical export shows that directly.
+- **`nanoda`:** "Checked 64601 declarations with no errors", exit 0. Its statement printout is identical to the first run (`3243262a…`).
+
+The logs in this folder are from the re-check.
