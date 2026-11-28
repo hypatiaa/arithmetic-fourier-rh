@@ -1,0 +1,109 @@
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+Mathlib 56a005855ea17e0b0958f73ec801ae140b0a1679
+Compiled CrystalBridge.lean SHA256 09be0284432a0026e184cd57349f8f1f17ba761d9485e095269f40bc7313d6ab
+'Ratioque.CrystalBridge.twistedMertens_eq_restore_2_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.CrystalBridge.mertens_eq_V_sub_V_div_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.CrystalBridge.norm_cexp_I_mul_sub_one_sub_I_mul_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.CrystalBridge.riemannHypothesis_of_V_cancellation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.CrystalBridge.riemannHypothesis_of_farey_approx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.CrystalBridge.everyCharacter_of_allChi_V_cancellation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.CrystalBridge.riemannHypothesis_of_everyCharacter' depends on axioms: [propext, Classical.choice, Quot.sound]
+Compiled ThreeToothVernierBridge.lean SHA256 657af6f83d71ea87d615f3e919a386a3111f066ba6f74c78b36edeac06ec3382
+'Ratioque.VernierBridge.centerToothRowSum_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierBridge.leftToothRowSum_eq_moebius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierBridge.rightToothRowSum_eq_moebius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierBridge.threeToothEndpoint_eq_two_mul_twistedV' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierBridge.riemannHypothesis_of_threeTooth_cancellation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierBridge.everyCharacter_of_allChi_threeTooth_cancellation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Compiled VernierPairingDirac.lean SHA256 59c9016bd89f1e86cfd6a43f93eb76d109ad2b2d24e5dcbe84e34a37ff61221a
+'Ratioque.VernierPairingDirac.causalLifo_unmatched_eq_abs_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.mod4_abs_add_abs_eq_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.mod4Lifo_unmatched_eq_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.norm_sum_le_unmatched_of_matching' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.mod4_shared_matching_lower_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.riemannHypothesis_of_disjoint_matching_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.everyCharacter_of_allChi_disjoint_matching_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.fixed_menu_prime_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.no_universal_inter_denominator_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.diracMatrix_isHermitian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.diracMatrix_finrank_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.uniform_coupling_nullity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.norm_V_le_dirac_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.riemannHypothesis_of_dirac_rank_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Axiom audit: 26 exported theorems, all within standard three.
+'Ratioque.VernierBridge.centerToothRowSum_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierBridge.leftToothRowSum_eq_moebius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierBridge.rightToothRowSum_eq_moebius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierBridge.leftFlankBand_eq_twistedV' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierBridge.centerBand_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierBridge.rightFlankBand_eq_twistedV' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierBridge.threeToothEndpoint_eq_two_mul_twistedV' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierBridge.riemannHypothesis_of_threeTooth_cancellation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierBridge.everyCharacter_of_allChi_threeTooth_cancellation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.causalLifo_unmatched_eq_abs_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.mod4_abs_add_abs_eq_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.mod4Lifo_unmatched_eq_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.norm_sum_le_unmatched_of_matching' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.abs_int_sum_le_unmatched_of_matching' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.mod4_shared_matching_lower_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.riemannHypothesis_of_disjoint_matching_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.everyCharacter_of_allChi_disjoint_matching_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.fixed_menu_prime_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.no_universal_inter_denominator_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Ratioque.VernierPairingDirac.diracMatrix_isHermitian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.diracMatrix_finrank_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.abs_grade_diff_le_dirac_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.uniform_coupling_nullity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.norm_V_eq_abs_grade_diff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.norm_V_le_dirac_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Ratioque.VernierPairingDirac.riemannHypothesis_of_dirac_rank_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+leanchecker CrystalBridge: PASS
+
+leanchecker ThreeToothVernierBridge: PASS
+
+leanchecker VernierPairingDirac: PASS
+
