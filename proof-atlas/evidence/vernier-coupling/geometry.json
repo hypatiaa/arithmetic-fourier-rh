@@ -1,0 +1,446 @@
+{
+  "sage": "10.9",
+  "checks": {
+    "rank_tests": 1224,
+    "minor_tests": 1983,
+    "mobius_checks": 10000
+  },
+  "all_cutoffs": [
+    {
+      "twist": false,
+      "through": 20000,
+      "cutoffs_with_extra": 6,
+      "first_excess": [
+        1417,
+        3,
+        -1
+      ],
+      "first_above_sqrt": null,
+      "peak": [
+        73,
+        8
+      ],
+      "largest_extra_then_cutoff": [
+        2,
+        1417
+      ]
+    },
+    {
+      "twist": true,
+      "through": 20000,
+      "cutoffs_with_extra": 3883,
+      "first_excess": [
+        115,
+        2,
+        0
+      ],
+      "first_above_sqrt": null,
+      "peak": [
+        85,
+        6
+      ],
+      "largest_extra_then_cutoff": [
+        36,
+        11105
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "x": 5,
+      "twist": false,
+      "p": 0,
+      "n": 1,
+      "v": -1,
+      "det1_unmatched": 1,
+      "radius": 2,
+      "local_unmatched": 1,
+      "extra": 0,
+      "shared_pairs": 0,
+      "shared_unmatched": 1
+    },
+    {
+      "x": 5,
+      "twist": true,
+      "p": 0,
+      "n": 1,
+      "v": -1,
+      "det1_unmatched": 1,
+      "radius": 2,
+      "local_unmatched": 1,
+      "extra": 0,
+      "shared_pairs": 0,
+      "shared_unmatched": 1
+    },
+    {
+      "x": 9,
+      "twist": false,
+      "p": 0,
+      "n": 2,
+      "v": -2,
+      "det1_unmatched": 2,
+      "radius": 3,
+      "local_unmatched": 2,
+      "extra": 0,
+      "shared_pairs": 0,
+      "shared_unmatched": 2
+    },
+    {
+      "x": 9,
+      "twist": true,
+      "p": 1,
+      "n": 1,
+      "v": 0,
+      "det1_unmatched": 0,
+      "radius": 3,
+      "local_unmatched": 0,
+      "extra": 0,
+      "shared_pairs": 0,
+      "shared_unmatched": 2
+    },
+    {
+      "x": 40,
+      "twist": false,
+      "p": 1,
+      "n": 4,
+      "v": -3,
+      "det1_unmatched": 3,
+      "radius": 6,
+      "local_unmatched": 3,
+      "extra": 0,
+      "shared_pairs": 1,
+      "shared_unmatched": 3
+    },
+    {
+      "x": 40,
+      "twist": true,
+      "p": 2,
+      "n": 3,
+      "v": -1,
+      "det1_unmatched": 3,
+      "radius": 6,
+      "local_unmatched": 1,
+      "extra": 0,
+      "shared_pairs": 1,
+      "shared_unmatched": 3
+    },
+    {
+      "x": 720,
+      "twist": false,
+      "p": 50,
+      "n": 61,
+      "v": -11,
+      "det1_unmatched": 45,
+      "radius": 26,
+      "local_unmatched": 11,
+      "extra": 0,
+      "shared_pairs": 50,
+      "shared_unmatched": 11
+    },
+    {
+      "x": 720,
+      "twist": true,
+      "p": 57,
+      "n": 54,
+      "v": 3,
+      "det1_unmatched": 75,
+      "radius": 26,
+      "local_unmatched": 3,
+      "extra": 0,
+      "shared_pairs": 50,
+      "shared_unmatched": 11
+    },
+    {
+      "x": 1000,
+      "twist": false,
+      "p": 72,
+      "n": 78,
+      "v": -6,
+      "det1_unmatched": 62,
+      "radius": 31,
+      "local_unmatched": 6,
+      "extra": 0,
+      "shared_pairs": 72,
+      "shared_unmatched": 6
+    },
+    {
+      "x": 1000,
+      "twist": true,
+      "p": 75,
+      "n": 75,
+      "v": 0,
+      "det1_unmatched": 102,
+      "radius": 31,
+      "local_unmatched": 0,
+      "extra": 0,
+      "shared_pairs": 72,
+      "shared_unmatched": 6
+    },
+    {
+      "x": 10000,
+      "twist": false,
+      "p": 749,
+      "n": 775,
+      "v": -26,
+      "det1_unmatched": 812,
+      "radius": 100,
+      "local_unmatched": 26,
+      "extra": 0,
+      "shared_pairs": 747,
+      "shared_unmatched": 30
+    },
+    {
+      "x": 10000,
+      "twist": true,
+      "p": 757,
+      "n": 767,
+      "v": -10,
+      "det1_unmatched": 848,
+      "radius": 100,
+      "local_unmatched": 10,
+      "extra": 0,
+      "shared_pairs": 747,
+      "shared_unmatched": 30
+    },
+    {
+      "x": 100000,
+      "twist": false,
+      "p": 7569,
+      "n": 7629,
+      "v": -60,
+      "det1_unmatched": 8242,
+      "radius": 316,
+      "local_unmatched": 60,
+      "extra": 0,
+      "shared_pairs": 7550,
+      "shared_unmatched": 98
+    },
+    {
+      "x": 100000,
+      "twist": true,
+      "p": 7569,
+      "n": 7629,
+      "v": -60,
+      "det1_unmatched": 8338,
+      "radius": 316,
+      "local_unmatched": 60,
+      "extra": 0,
+      "shared_pairs": 7550,
+      "shared_unmatched": 98
+    },
+    {
+      "x": 1000000,
+      "twist": false,
+      "p": 76033,
+      "n": 75947,
+      "v": 86,
+      "det1_unmatched": 82712,
+      "radius": 1000,
+      "local_unmatched": 86,
+      "extra": 0,
+      "shared_pairs": 75700,
+      "shared_unmatched": 580
+    },
+    {
+      "x": 1000000,
+      "twist": true,
+      "p": 76101,
+      "n": 75879,
+      "v": 222,
+      "det1_unmatched": 82976,
+      "radius": 1000,
+      "local_unmatched": 494,
+      "extra": 272,
+      "shared_pairs": 75700,
+      "shared_unmatched": 580
+    },
+    {
+      "x": 10000000,
+      "twist": false,
+      "p": 760274,
+      "n": 759566,
+      "v": 708,
+      "det1_unmatched": 828010,
+      "radius": 3162,
+      "local_unmatched": 708,
+      "extra": 0,
+      "shared_pairs": 759457,
+      "shared_unmatched": 926
+    },
+    {
+      "x": 10000000,
+      "twist": true,
+      "p": 760108,
+      "n": 759732,
+      "v": 376,
+      "det1_unmatched": 828882,
+      "radius": 3162,
+      "local_unmatched": 376,
+      "extra": 0,
+      "shared_pairs": 759457,
+      "shared_unmatched": 926
+    },
+    {
+      "x": 30922618,
+      "twist": false,
+      "p": 2348890,
+      "n": 2350799,
+      "v": -1909,
+      "det1_unmatched": 2561059,
+      "radius": 5560,
+      "local_unmatched": 1909,
+      "extra": 0,
+      "shared_pairs": 2348890,
+      "shared_unmatched": 1909
+    },
+    {
+      "x": 30922618,
+      "twist": true,
+      "p": 2349333,
+      "n": 2350356,
+      "v": -1023,
+      "det1_unmatched": 2562565,
+      "radius": 5560,
+      "local_unmatched": 1023,
+      "extra": 0,
+      "shared_pairs": 2348890,
+      "shared_unmatched": 1909
+    },
+    {
+      "x": 49098878,
+      "twist": false,
+      "p": 3731304,
+      "n": 3730829,
+      "v": 475,
+      "det1_unmatched": 4069845,
+      "radius": 7007,
+      "local_unmatched": 475,
+      "extra": 0,
+      "shared_pairs": 3729568,
+      "shared_unmatched": 2997
+    },
+    {
+      "x": 49098878,
+      "twist": true,
+      "p": 3729568,
+      "n": 3732565,
+      "v": -2997,
+      "det1_unmatched": 4065439,
+      "radius": 7007,
+      "local_unmatched": 2997,
+      "extra": 0,
+      "shared_pairs": 3729568,
+      "shared_unmatched": 2997
+    },
+    {
+      "x": 73791943,
+      "twist": false,
+      "p": 5606160,
+      "n": 5608899,
+      "v": -2739,
+      "det1_unmatched": 6114351,
+      "radius": 8590,
+      "local_unmatched": 2739,
+      "extra": 0,
+      "shared_pairs": 5605278,
+      "shared_unmatched": 4503
+    },
+    {
+      "x": 73791943,
+      "twist": true,
+      "p": 5608476,
+      "n": 5606583,
+      "v": 1893,
+      "det1_unmatched": 6112371,
+      "radius": 8590,
+      "local_unmatched": 1893,
+      "extra": 0,
+      "shared_pairs": 5605278,
+      "shared_unmatched": 4503
+    },
+    {
+      "x": 100000000,
+      "twist": false,
+      "p": 7599444,
+      "n": 7598718,
+      "v": 726,
+      "det1_unmatched": 8285592,
+      "radius": 10000,
+      "local_unmatched": 726,
+      "extra": 0,
+      "shared_pairs": 7596843,
+      "shared_unmatched": 4476
+    },
+    {
+      "x": 100000000,
+      "twist": true,
+      "p": 7599356,
+      "n": 7598806,
+      "v": 550,
+      "det1_unmatched": 8283590,
+      "radius": 10000,
+      "local_unmatched": 3100,
+      "extra": 2550,
+      "shared_pairs": 7596843,
+      "shared_unmatched": 4476
+    }
+  ],
+  "certificates": [
+    {
+      "x": 115,
+      "twist": true,
+      "minority": 1,
+      "unmatched_minority": 1,
+      "interval": [
+        1,
+        59,
+        67,
+        3,
+        2
+      ],
+      "min_saturating_radius": 12
+    },
+    {
+      "x": 1417,
+      "twist": false,
+      "minority": 1,
+      "unmatched_minority": 1,
+      "interval": [
+        1,
+        1385,
+        1417,
+        10,
+        9
+      ],
+      "min_saturating_radius": 38
+    },
+    {
+      "x": 1000000,
+      "twist": true,
+      "minority": -1,
+      "unmatched_minority": 136,
+      "interval": [
+        136,
+        500001,
+        629659,
+        19928,
+        19792
+      ],
+      "min_saturating_radius": 1440
+    },
+    {
+      "x": 100000000,
+      "twist": true,
+      "minority": -1,
+      "unmatched_minority": 1275,
+      "interval": [
+        1275,
+        59829053,
+        99999995,
+        6107381,
+        6106106
+      ],
+      "min_saturating_radius": 14207
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "sage": "10.9",
+  "results": [
+    {
+      "twist": false,
+      "checked_cutoffs": 99999999,
+      "slabs": 72,
+      "argmax_witness": 73,
+      "signed": -8,
+      "squared_peak": "64/73"
+    },
+    {
+      "twist": true,
+      "checked_cutoffs": 99999999,
+      "slabs": 94,
+      "argmax_witness": 85,
+      "signed": 6,
+      "squared_peak": "36/85"
+    }
+  ]
+}
